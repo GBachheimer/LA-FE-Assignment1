@@ -10,18 +10,18 @@ import { useContext } from 'react'
 import { auth } from '../../config/firebase/firebase'              
 
 const Signup = ({step, actionCode}) => {
-  const [workspace, setWorkspace] = useState("");
   const [email, setEmail] = useState("");
-  const [termsAgrement, setTermsAgrement] = useState(false);
-  const [adsAgrement, setAdsAgrement] = useState(false);
   const [password, setPassword] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
+  const [termsAgrement, setTermsAgrement] = useState(false);
+  const [adsAgrement, setAdsAgrement] = useState(false);
+  const [done, setDone] = useState();
+  const [workspace, setWorkspace] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
-  const [done, setDone] = useState();
   const { openSnackBar, handleMessage, handleSeverity } = useContext(SnackbarContext);
 
-  const handleSubmit = (event) => {
+  const handleSignup = (event) => {
     event.preventDefault();
     if (password !== repeatPass) {
       handleMessage("Wrong confirmation password!");
@@ -68,7 +68,6 @@ const Signup = ({step, actionCode}) => {
         setDone(true);
       })
       .catch((error) => {
-          console.log(error.code);
           const errorCode = error.code;
           if (errorCode === "auth/too-many-requests") {
               handleMessage("Previous email is still valid. Search in spam/junk folder or try again later.");
@@ -94,7 +93,7 @@ const Signup = ({step, actionCode}) => {
           handleTermsAgrement = {() => setTermsAgrement(!termsAgrement)}
           adsAgrement = {adsAgrement}
           handleAdsAgrement = {() => setAdsAgrement(!adsAgrement)}
-          handleSubmit = {handleSubmit}
+          handleSignup = {handleSignup}
           done = {done}
         /> 
         : 

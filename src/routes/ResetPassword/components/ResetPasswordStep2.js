@@ -38,7 +38,7 @@ const ResetPasswordStep2 = ({actionCode}) => {
         navigate("/login");
       })
       .catch((error) => {
-        handleMessage(`Something went wrong! ${error.message}`);
+        handleMessage(`Something went wrong! ${error.code}`);
         handleSeverity("error");
         openSnackBar();
       });

@@ -14,7 +14,7 @@ import { SnackbarContext } from '../../../contexts/SnackbarContext'
 const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const [checked, setChecked] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
   const { handleMessage, handleSeverity, openSnackBar} = useContext(SnackbarContext);
   const navigate = useNavigate();
 
@@ -24,10 +24,14 @@ const LoginForm = () => {
         .then((userCredential) => {
             if (!userCredential.user.emailVerified) {
                 handleMessage("Please verify your email!");
+                handleSeverity("warning");
                 openSnackBar();
                 signOut(auth);
                 return;
-            }
+            };
+            handleMessage("Login successful!");
+            handleSeverity("success");
+            openSnackBar();
             navigate("/workspace");
         })
         .catch((error) => {
@@ -74,8 +78,8 @@ const LoginForm = () => {
         />
         <FormChecks
           checkText = "Remember me"
-          checked = {checked}
-          handleChange = {() => setChecked(!checked)}
+          checked = {rememberMe}
+          handleChange = {() => setRememberMe(!rememberMe)}
         >
           <Grid sx = {{marginLeft: "auto"}}>
             <CustomTypography variant = "body2">

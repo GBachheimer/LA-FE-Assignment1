@@ -1,5 +1,6 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom';
+import PageNotFound from '../routes/PageNotFound/PageNotFound';
 import ResetPassword from '../routes/ResetPassword/ResetPassword';
 import Signup from '../routes/Signup/Signup';
 
@@ -23,7 +24,7 @@ const EmailRedirect = () => {
                     actionCode = {actionCode}
                 />
             }
-            {!mode && <div>test</div>}
+            {!mode && <PageNotFound />}
         </>
     );
 }

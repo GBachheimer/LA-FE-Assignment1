@@ -5,7 +5,7 @@ import FormTextField from '../../../components/FormTemplate/components/FormTextF
 import { auth } from '../../../config/firebase/firebase'
 import { sendPasswordResetEmail } from 'firebase/auth'
 import { SnackbarContext } from '../../../contexts/SnackbarContext'
-import SignupDone from '../../../resources/svg/SignupDone'
+import EmailSentSVG from '../../../resources/svg/EmailSent'
 
 const ResetPasswordStep1 = () => {
   const [email, setEmail] = useState("");
@@ -25,12 +25,12 @@ const ResetPasswordStep1 = () => {
     })
     .catch((error) => {
         const errorCode = error.code;
-        console.log(errorCode);
+        handleMessage("Something went wrong!");
         if(errorCode === "auth/missing-email" || errorCode === "auth/invalid-email" || errorCode === "auth/user-not-found") {
             handleMessage("Please provide a valid email address!");
-            handleSeverity("error");
-            openSnackBar();
-        }
+        };
+        handleSeverity("error");
+        openSnackBar();
     });
 };
 
@@ -62,7 +62,7 @@ const ResetPasswordStep1 = () => {
             We sent you an email to edit your password. if you didn't received the email, please check your SPAM inbox.`
           }
         >
-          <SignupDone />
+          <EmailSentSVG />
         </FormTemplate>
       }
     </>

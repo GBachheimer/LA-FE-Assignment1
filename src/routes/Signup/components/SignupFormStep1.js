@@ -4,9 +4,9 @@ import CustomTypography from '../../../components/CustomTypography'
 import FormTemplate from '../../../components/FormTemplate/FormTemplate'
 import FormTextField from '../../../components/FormTemplate/components/FormTextField'
 import FormChecks from '../../../components/FormTemplate/components/FormChecks'
-import SignupDone from '../../../resources/svg/SignupDone'
+import EmailSentSVG from '../../../resources/svg/EmailSent'
 
-const SignupFormStep1 = ({password, handlePassword, email, handleEmail, termsAgrement, handleTermsAgrement, adsAgrement, handleAdsAgrement, handleSubmit, done, repeatPass, handleRepeatPass}) => {
+const SignupFormStep1 = ({password, handlePassword, email, handleEmail, termsAgrement, handleTermsAgrement, adsAgrement, handleAdsAgrement, handleSignup, done, repeatPass, handleRepeatPass}) => {
 
   return (
     <>
@@ -16,7 +16,7 @@ const SignupFormStep1 = ({password, handlePassword, email, handleEmail, termsAgr
           subtitle = "Coraly is the tool to manage your work processes from the same place"
           buttonColor = "success"
           buttonText = "Create account"
-          buttonAction = {handleSubmit}
+          buttonAction = {handleSignup}
           footerText = "Do you have an account ?"
           footerLink = "/login"
           footerLinkText = " Sign in"
@@ -64,7 +64,7 @@ const SignupFormStep1 = ({password, handlePassword, email, handleEmail, termsAgr
           title = "Account created"
           subtitle = "Check your email and confirm your account!"
         >
-          <SignupDone />
+          <EmailSentSVG />
         </FormTemplate>
       }
     </>
