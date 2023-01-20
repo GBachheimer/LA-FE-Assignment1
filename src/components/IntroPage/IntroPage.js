@@ -10,7 +10,7 @@ import theme from '../theme'
 const IntroPage = ({color}) => {
   return (
     <Grid 
-      conteiner item 
+      container item 
       xs = {7} 
       sx = {{
         textAlign: "center", 

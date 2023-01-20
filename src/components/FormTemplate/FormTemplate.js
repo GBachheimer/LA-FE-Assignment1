@@ -2,15 +2,17 @@ import {Box, Button } from '@mui/material'
 import React from 'react'
 import CustomTypography from '../CustomTypography'
 import CustomLink from '../CustomLink'
-import FormHeader from './FormHeader'
+import FormHeader from './components/FormHeader'
+import FromContainer from './components/FromContainer'
+import { useState } from 'react'
 
 const FormTemplate = ({title, subtitle, buttonColor, buttonAction, buttonText, footerLink, footerLinkText, footerText, children}) => {
 
   return (
-    <Box>
+    <FromContainer>
       <FormHeader title = {title} subtitle = {subtitle} />
       {children}
-      <Button 
+      {buttonAction && <Button 
         variant = "contained"
         color = {buttonColor}
         onClick = {buttonAction}
@@ -23,14 +25,14 @@ const FormTemplate = ({title, subtitle, buttonColor, buttonAction, buttonText, f
         }}
       >
         {buttonText}
-      </Button>
+      </Button>}
       <CustomTypography variant = "body2" style = {{marginTop: "2vh"}}>
         {footerText} 
         <CustomLink to = {footerLink} style = {{alignText: "right"}}> 
           {footerLinkText}
         </CustomLink>
       </CustomTypography>
-    </Box>
+    </FromContainer>
   )
 }
 

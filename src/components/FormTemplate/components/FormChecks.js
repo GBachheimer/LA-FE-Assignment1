@@ -1,6 +1,6 @@
 import React from 'react'
 import { Grid, Checkbox, FormControlLabel } from '@mui/material'
-import CustomTypography from '../CustomTypography'
+import CustomTypography from '../../CustomTypography'
 
 const FormChecks = ({checkText, checked, handleChange, children}) => {
   return (

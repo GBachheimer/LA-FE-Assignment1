@@ -9,22 +9,34 @@ import ResetPassword from './routes/ResetPassword/ResetPassword';
 import PageNotFound from './routes/PageNotFound/PageNotFound';
 import theme from "./components/theme";
 import { ThemeProvider } from '@mui/material/styles';
+import { SnackbarProvider } from './contexts/SnackbarContext';
+import { AuthProvider } from './contexts/AuthContext';
+import EmailRedirect from './components/EmailRedirect';
+import { AuthContext } from './contexts/AuthContext';
+import { useContext } from 'react';
 
 const App = () => {
+  const user = useContext(AuthContext);
+
   return (
-    <ThemeProvider theme = {theme}>
-      <BrowserRouter>
-        {/* <MenuDrawer /> */}
-        <Routes>
-          <Route path = "/signup" element = { <Signup /> } />
-          <Route path = "/login" element = { <Login /> } />
-          <Route path = "/resetPassword" element = { <ResetPassword /> } />
-          <Route path = "/workspace" element = { <Workspace /> } />
-          <Route path = "/process" element = { <Process /> } />
-          <Route path= "*" element = { <PageNotFound /> } />
-        </Routes>
-      </BrowserRouter>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme = { theme }>
+        <SnackbarProvider>
+          <BrowserRouter>
+            { user && <MenuDrawer /> }
+            <Routes>
+              <Route path = "/signup" element = { <Signup step = "1"/> } />
+              <Route path = "/login" element = { <Login /> } />
+              <Route path = "/resetPassword" element = { <ResetPassword step = "1"/> } />
+              <Route path = "/handleEmail" element = { < EmailRedirect />} />
+              { user && <Route path = "/workspace" element = { <Workspace /> } /> }
+              { user && <Route path = "/process" element = { <Process /> } /> }
+              <Route path = "*" element = { <PageNotFound /> } />
+            </Routes>
+          </BrowserRouter>
+        </SnackbarProvider>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }
 

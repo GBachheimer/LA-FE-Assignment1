@@ -1,36 +1,56 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useState } from 'react'
-import FromContainer from '../../../components/FormTemplate/FromContainer'
 import FormTemplate from '../../../components/FormTemplate/FormTemplate'
-import FormTextField from '../../../components/FormTemplate/FormTextField'
-import SnackbarTemplate from '../../../components/SnackbarTemplate/SnackbarTemplate'
-import SignupDone from '../../../resources/svg/SignupDone'
-import theme from '../../../components/theme'
+import FormTextField from '../../../components/FormTemplate/components/FormTextField'
+import { SnackbarContext } from '../../../contexts/SnackbarContext'
+import { auth } from '../../../config/firebase/firebase'
+import { verifyPasswordResetCode, confirmPasswordReset } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom'
 
-const ResetPasswordStep2 = () => {
-  const [message, setMessage] = useState("");
-  const [open, setOpen] = useState();
-  const [severity, setSeverity] = useState("info");
+const ResetPasswordStep2 = ({actionCode}) => {
   const [password, setPassword] = useState("");
-  const [corfimPass, setCorfimPass] = useState("");
+  const [confirmPass, setCorfirmPass] = useState("");
+  const {handleMessage, handleSeverity, openSnackBar} = useContext(SnackbarContext);
+  const navigate = useNavigate();
 
-  const handleSnackBar = () => {
-    setOpen(false);
+  useEffect(() => {
+    verifyPasswordResetCode(auth, actionCode)
+      .catch((error) => {
+        handleMessage(`Something went wrong! ${error.message}`);
+        handleSeverity("error");
+        openSnackBar();
+      });
+  }, [])
+
+  const handleUpdatePass = (event) => {
+    event.preventDefault();
+    if (password !== confirmPass) {
+      handleMessage("Wrong confirmation password!");
+      handleSeverity("error");
+      openSnackBar();
+      return;
+    };
+    confirmPasswordReset(auth, actionCode, password)
+      .then(() => {
+        handleMessage(`Password update successfuly!`);
+        handleSeverity("success");
+        openSnackBar();
+        navigate("/login");
+      })
+      .catch((error) => {
+        handleMessage(`Something went wrong! ${error.message}`);
+        handleSeverity("error");
+        openSnackBar();
+      });
   }
 
   return (
-    <FromContainer
-      snackbarMessage = {message}
-      snackbarOpen = {open}
-      snackbarSeverity = {severity}
-      handleSnackBar = {handleSnackBar}
-    >
       <FormTemplate
         title = "Insert new password"
         subtitle = "Enter your new password to access the platform"
         buttonColor = "warning"
         buttonText = "Create new password"
-        buttonAction = {() => setOpen(false)}
+        buttonAction = {handleUpdatePass}
       >
         <FormTextField 
           label = "New password"
@@ -39,17 +59,10 @@ const ResetPasswordStep2 = () => {
         />
         <FormTextField 
           label = "Confirm new password"
-          value = {corfimPass}
-          onChangeHandler = {(event) => setCorfimPass(event.target.value)}
+          value = {confirmPass}
+          onChangeHandler = {(event) => setCorfirmPass(event.target.value)}
         />
       </FormTemplate>
-      <SnackbarTemplate 
-        severity = {severity} 
-        handleSnackBar = {handleSnackBar} 
-        open = {open} 
-        message = {message} 
-      />
-    </FromContainer>
   )
 }
 

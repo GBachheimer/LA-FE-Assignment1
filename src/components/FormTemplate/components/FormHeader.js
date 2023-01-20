@@ -1,6 +1,6 @@
 import React from 'react'
 import { Box } from '@mui/material'
-import CustomTypography from '../CustomTypography'
+import CustomTypography from '../../CustomTypography'
 
 const FormHeader = ({title, subtitle}) => {
   return (

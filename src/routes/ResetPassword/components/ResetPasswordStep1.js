@@ -1,44 +1,71 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
-import FromContainer from '../../../components/FormTemplate/FromContainer'
 import FormTemplate from '../../../components/FormTemplate/FormTemplate'
-import FormTextField from '../../../components/FormTemplate/FormTextField'
-import theme from '../../../components/theme'
+import FormTextField from '../../../components/FormTemplate/components/FormTextField'
+import { auth } from '../../../config/firebase/firebase'
+import { sendPasswordResetEmail } from 'firebase/auth'
+import { SnackbarContext } from '../../../contexts/SnackbarContext'
+import SignupDone from '../../../resources/svg/SignupDone'
 
 const ResetPasswordStep1 = () => {
-  const [message, setMessage] = useState("");
-  const [open, setOpen] = useState();
-  const [severity, setSeverity] = useState("info");
   const [email, setEmail] = useState("");
+  const [done, setDone] = useState();
+  const {openSnackBar, handleMessage, handleSeverity} = useContext(SnackbarContext);
 
-  const handleSnackBar = () => {
-    setOpen(false);
-  }
+  const handleResetPass = (event) => {
+    event.preventDefault();
+    sendPasswordResetEmail(auth, email, {
+      url: 'http://localhost:3000/login'
+    })
+    .then(() => {
+        handleMessage("Password reset email sent!");
+        handleSeverity("success");
+        openSnackBar();
+        setDone(true);
+    })
+    .catch((error) => {
+        const errorCode = error.code;
+        console.log(errorCode);
+        if(errorCode === "auth/missing-email" || errorCode === "auth/invalid-email" || errorCode === "auth/user-not-found") {
+            handleMessage("Please provide a valid email address!");
+            handleSeverity("error");
+            openSnackBar();
+        }
+    });
+};
 
   return (
-    <FromContainer
-      snackbarMessage = {message}
-      snackbarOpen = {open}
-      snackbarSeverity = {severity}
-      handleSnackBar = {handleSnackBar}
-    >
-      <FormTemplate
-        title = "Do you forgot your password?"
-        subtitle = "Insert your email and we will send you a link in your email box to reset your password"
-        buttonColor = "warning"
-        buttonText = "Reset password"
-        buttonAction = {() => setOpen(false)}
-        footerText = "Go back to"
-        footerLink = "/login"
-        footerLinkText = " login"
-      >
-        <FormTextField 
-          label = "Email"
-          value = {email}
-          onChangeHandler = {(event) => setEmail(event.target.value)}
-        />
-      </FormTemplate>
-    </FromContainer>
+    <>
+      {!done && 
+        <FormTemplate
+          title = "Do you forgot your password?"
+          subtitle = "Insert your email and we will send you a link in your email box to reset your password"
+          buttonColor = "warning"
+          buttonText = "Reset password"
+          buttonAction = {handleResetPass}
+          footerText = "Go back to"
+          footerLink = "/login"
+          footerLinkText = " login"
+        >
+          <FormTextField 
+            label = "Email"
+            value = {email}
+            onChangeHandler = {(event) => setEmail(event.target.value)}
+          />
+        </FormTemplate>
+      }
+      {done && 
+        <FormTemplate 
+          title = "Email was sent!"
+          subtitle = {
+            `Check your email inbox.
+            We sent you an email to edit your password. if you didn't received the email, please check your SPAM inbox.`
+          }
+        >
+          <SignupDone />
+        </FormTemplate>
+      }
+    </>
   )
 }
 

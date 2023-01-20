@@ -1,39 +1,62 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
 import { Grid } from '@mui/material'
 import FormTemplate from '../../../components/FormTemplate/FormTemplate'
-import FormTextField from '../../../components/FormTemplate/FormTextField'
-import FormChecks from '../../../components/FormTemplate/FormChecks'
+import FormTextField from '../../../components/FormTemplate/components/FormTextField'
+import FormChecks from '../../../components/FormTemplate/components/FormChecks'
 import CustomLink from '../../../components/CustomLink'
 import CustomTypography from '../../../components/CustomTypography'
-import FromContainer from '../../../components/FormTemplate/FromContainer'
-import theme from '../../../components/theme'
+import { signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { auth } from '../../../config/firebase/firebase'
+import { useNavigate } from 'react-router-dom'
+import { SnackbarContext } from '../../../contexts/SnackbarContext'
 
 const LoginForm = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [checked, setChecked] = useState(false);
-  const [message, setMessage] = useState("");
-  const [open, setOpen] = useState();
-  const [severity, setSeverity] = useState("info");
-  
-  const handleSnackBar = () => {
-      setOpen(false);
+  const { handleMessage, handleSeverity, openSnackBar} = useContext(SnackbarContext);
+  const navigate = useNavigate();
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            if (!userCredential.user.emailVerified) {
+                handleMessage("Please verify your email!");
+                openSnackBar();
+                signOut(auth);
+                return;
+            }
+            navigate("/workspace");
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            console.log(errorCode);
+            if (errorCode === "auth/wrong-password") {
+                handleMessage("Wrong password!");
+            } else if (errorCode === "auth/invalid-email") {
+                handleMessage("Wrong email address!");
+            } else if (errorCode === "auth/internal-error") {
+                handleMessage("Please provide a valid email or password!");
+            } else if (errorCode === "auth/user-not-found") {
+                handleMessage("This account doesn't exists!");
+            } else {
+                handleMessage("There was a problem, please try again!");
+            }
+            handleSeverity("error");
+            openSnackBar();
+        });
+
   };
 
   return (
-    <FromContainer
-      snackbarMessage = {message}
-      snackbarOpen = {open}
-      snackbarSeverity = {severity}
-      handleSnackBar = {handleSnackBar}
-    >
       <FormTemplate
         title = "Log in"
         subtitle = "Thanks to come back on Coraly"
         buttonColor = "primary"
         buttonText = "Log in"
-        buttonAction = {() => setOpen(false)}
+        buttonAction = {handleLogin}
         footerText = "Don't you have an account ?"
         footerLink = "/signup"
         footerLinkText = " Sign up now"
@@ -63,7 +86,6 @@ const LoginForm = () => {
           </Grid>
         </FormChecks>
       </FormTemplate>
-    </FromContainer>
   )
 }
 
