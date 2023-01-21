@@ -21,36 +21,36 @@ const LoginForm = () => {
   const handleLogin = (event) => {
     event.preventDefault();
     signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            if (!userCredential.user.emailVerified) {
-                handleMessage("Please verify your email!");
-                handleSeverity("warning");
-                openSnackBar();
-                signOut(auth);
-                return;
-            };
-            handleMessage("Login successful!");
-            handleSeverity("success");
-            openSnackBar();
-            navigate("/workspace");
-        })
-        .catch((error) => {
-            const errorCode = error.code;
-            console.log(errorCode);
-            if (errorCode === "auth/wrong-password") {
-                handleMessage("Wrong password!");
-            } else if (errorCode === "auth/invalid-email") {
-                handleMessage("Wrong email address!");
-            } else if (errorCode === "auth/internal-error") {
-                handleMessage("Please provide a valid email or password!");
-            } else if (errorCode === "auth/user-not-found") {
-                handleMessage("This account doesn't exists!");
-            } else {
-                handleMessage("There was a problem, please try again!");
-            }
-            handleSeverity("error");
-            openSnackBar();
-        });
+      .then((userCredential) => {
+          if (!userCredential.user.emailVerified) {
+              handleMessage("Please verify your email!");
+              handleSeverity("warning");
+              openSnackBar();
+              signOut(auth);
+              return;
+          };
+          handleMessage("Login successful!");
+          handleSeverity("success");
+          openSnackBar();
+          navigate("/workspace");
+      })
+      .catch((error) => {
+          const errorCode = error.code;
+          console.log(errorCode);
+          if (errorCode === "auth/wrong-password") {
+              handleMessage("Wrong password!");
+          } else if (errorCode === "auth/invalid-email") {
+              handleMessage("Wrong email address!");
+          } else if (errorCode === "auth/internal-error") {
+              handleMessage("Please provide a valid email or password!");
+          } else if (errorCode === "auth/user-not-found") {
+              handleMessage("This account doesn't exists!");
+          } else {
+              handleMessage("There was a problem, please try again!");
+          }
+          handleSeverity("error");
+          openSnackBar();
+      });
 
   };
 

@@ -24,8 +24,8 @@ const SignupFormStep2 = ({name, handleName, surname, handleSurname, workspace, h
       });
   }, []);
 
-  const handleSubmit2 = () => {
-    //save info to firebase database then
+  const handleAdditionalInfo = () => {
+    //save info to firebase database/firestore then
     if (name !== "" && surname !== "" && workspace !== "") {
       navigate("/workspace");
     } else {
@@ -41,7 +41,7 @@ const SignupFormStep2 = ({name, handleName, surname, handleSurname, workspace, h
         subtitle = "Insert all your info to procced with your workspace"
         buttonColor = "success"
         buttonText = "Complete now"
-        buttonAction = {handleSubmit2}
+        buttonAction = {handleAdditionalInfo}
       >
         <FormTextField 
           label = "Workspace"

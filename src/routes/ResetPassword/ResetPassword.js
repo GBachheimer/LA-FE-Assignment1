@@ -3,7 +3,7 @@ import { Grid } from '@mui/material'
 import theme from '../../components/theme'
 import ResetPasswordStep1 from './components/ResetPasswordStep1'
 import ResetPasswordStep2 from './components/ResetPasswordStep2'
-import IntroPage from '../../components/IntroPage/IntroPage'
+import IntroPage from '../../components/IntroPage'
 
 const ResetPassword = ({step, actionCode}) => {
 

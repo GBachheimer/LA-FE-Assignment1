@@ -1,11 +1,11 @@
 import React from 'react'
 import { Grid, Typography, Box } from '@mui/material'
-import IntroBar from '../../resources/svg/shapes/IntroBar'
-import IntroCircle from '../../resources/svg/shapes/IntroCircle'
-import IntroSemiCircle from '../../resources/svg/shapes/IntroSemiCircle'
-import IntroTriangle from '../../resources/svg/shapes/IntroTriangle'
-import DotPattern from '../../resources/svg/DotPattern'
-import theme from '../theme'
+import IntroBar from '../resources/svg/shapes/IntroBar'
+import IntroCircle from '../resources/svg/shapes/IntroCircle'
+import IntroSemiCircle from '../resources/svg/shapes/IntroSemiCircle'
+import IntroTriangle from '../resources/svg/shapes/IntroTriangle'
+import DotPattern from '../resources/svg/DotPattern'
+import theme from './theme'
 
 const IntroPage = ({color}) => {
   return (

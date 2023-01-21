@@ -1,6 +1,5 @@
 import './App.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MenuDrawer from './components/MenuDrawer/MenuDrawer';
 import Login from './routes/Login/Login';
 import Signup from './routes/Signup/Signup';
 import Process from './routes/Process/Process';
@@ -23,14 +22,13 @@ const App = () => {
       <ThemeProvider theme = { theme }>
         <SnackbarProvider>
           <BrowserRouter>
-            { user && <MenuDrawer /> }
             <Routes>
               <Route path = "/signup" element = { <Signup step = "1"/> } />
               <Route path = "/login" element = { <Login /> } />
               <Route path = "/resetPassword" element = { <ResetPassword step = "1"/> } />
               <Route path = "/handleEmail" element = { < EmailRedirect />} />
-              { user && <Route path = "/workspace" element = { <Workspace /> } /> }
-              { user && <Route path = "/process" element = { <Process /> } /> }
+              <Route path = "/workspace" element = { <Workspace /> } />
+              <Route path = "/process" element = { <Process /> } />
               <Route path = "*" element = { <PageNotFound /> } />
             </Routes>
           </BrowserRouter>

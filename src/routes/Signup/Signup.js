@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import IntroPage from '../../components/IntroPage/IntroPage'
+import IntroPage from '../../components/IntroPage'
 import SignupFormStep1 from './components/SignupFormStep1'
 import { Grid } from '@mui/material'
 import SignupFormStep2 from './components/SignupFormStep2'
