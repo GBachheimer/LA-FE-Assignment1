@@ -14,7 +14,7 @@ const PageNotFound = () => {
 
   const handleGoBack = () => {
     if (user) {
-      navigate("/workspace");
+      navigate(`/workspace`);
     } else {
       navigate("/login");
     };

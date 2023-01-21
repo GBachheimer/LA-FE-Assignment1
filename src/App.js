@@ -27,8 +27,9 @@ const App = () => {
               <Route path = "/login" element = { <Login /> } />
               <Route path = "/resetPassword" element = { <ResetPassword step = "1"/> } />
               <Route path = "/handleEmail" element = { < EmailRedirect />} />
-              <Route path = "/workspace" element = { <Workspace /> } />
-              <Route path = "/process" element = { <Process /> } />
+              <Route path = "/workspace" element = { <Workspace /> } >
+                <Route path = "process" element = { <Process /> } />
+              </Route>
               <Route path = "*" element = { <PageNotFound /> } />
             </Routes>
           </BrowserRouter>

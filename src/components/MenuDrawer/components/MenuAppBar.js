@@ -5,6 +5,8 @@ import MuiAppBar from '@mui/material/AppBar';
 import { drawerWidth } from '../MenuDrawer';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { teal } from '@mui/material/colors';
+import { useLocation } from 'react-router-dom';
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -25,13 +27,22 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const MenuAppBar = ({title, open}) => {
+const params = useLocation();
+
   return (
       <AppBar position="fixed" open={open} sx = {{backgroundColor: "white", color: "black"}}>
         <Toolbar>
-          <Box display = "flex" justifyContent = "start" alignItems = "start" minWidth = "10%" sx = {{transform: !open ? "translateX(50%)" : "revert"}}>
-            <Typography variant="h6" noWrap >
-              {title}
-            </Typography>
+          <Box display = "flex" justifyContent = "start" alignItems = "center" minWidth = "50%" sx = {{transform: !open ? "translateX(10%)" : "revert"}}>
+            {params.pathname.split("/").map((param, index) => {
+              return (
+                <>
+                  <Typography variant="h6" noWrap key = {index} >
+                    {param}
+                  </Typography>
+                  {index > 0 ? <KeyboardArrowRightIcon /> : null}
+                </>
+              );
+            })}
           </Box>
           <Box display = "flex" justifyContent = "end" alignItems = "center" width = "100%">
             <NotificationsOutlinedIcon />

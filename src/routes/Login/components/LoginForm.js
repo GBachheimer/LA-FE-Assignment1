@@ -32,7 +32,7 @@ const LoginForm = () => {
           handleMessage("Login successful!");
           handleSeverity("success");
           openSnackBar();
-          navigate("/workspace");
+          navigate(`/workspace`);
       })
       .catch((error) => {
           const errorCode = error.code;

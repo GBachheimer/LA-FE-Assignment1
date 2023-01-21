@@ -27,7 +27,7 @@ const SignupFormStep2 = ({name, handleName, surname, handleSurname, workspace, h
   const handleAdditionalInfo = () => {
     //save info to firebase database/firestore then
     if (name !== "" && surname !== "" && workspace !== "") {
-      navigate("/workspace");
+      navigate(`/workspace`);
     } else {
       handleMessage("Please fill all the required fields!");
       handleSeverity("warning");
