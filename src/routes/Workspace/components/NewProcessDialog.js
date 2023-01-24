@@ -8,10 +8,7 @@ import Slide from '@mui/material/Slide';
 import { TextField, Select, MenuItem, Box, FormControl, InputLabel } from '@mui/material';
 import theme from '../../../styles/theme';
 import { grey, teal } from '@mui/material/colors';
-
-const Transition = React.forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
+import { Transition } from '../../../utils/transitionsDrawer';
 
 const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, handleCreateProcess, pickColor, handlePickColor, processPrivacy, handleProcessPrivacy}) => {
   return (

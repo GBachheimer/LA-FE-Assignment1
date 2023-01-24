@@ -21,6 +21,17 @@ import RobotIcon from '../resources/svg/menuIcons/RobotIcon';
 import TreeIcon from '../resources/svg/menuIcons/TreeIcon';
 import FAQIcon from '../resources/svg/menuIcons/FAQIcon';
 import ConectionsIcon from '../resources/svg/menuIcons/ConectionsIcon';
+import KeyboardReturnRoundedIcon from '@mui/icons-material/KeyboardReturnRounded';
+import ViewColumnRoundedIcon from '@mui/icons-material/ViewColumnRounded';
+import ViewModuleIcon from '@mui/icons-material/ViewModule';
+import LabelIcon from '@mui/icons-material/Label';
+import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
+import SmartToyIcon from '@mui/icons-material/SmartToy';
+import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
+import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
+import StartIcon from '@mui/icons-material/Start';
+import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import { Typography } from '@mui/material';
 
 export const topBarOptions = [
     ["views", <WebAssetIcon/>], 
@@ -70,4 +81,18 @@ export const mainMenu = [
     ['Robot', <RobotIcon />], 
     ['Tree', <TreeIcon />], 
     ['FAQ', <FAQIcon />],
+  ];
+
+  export const settingsOptions = [
+    {"StartForm": <ListIcon />}, 
+    {"Stages": <KeyboardReturnRoundedIcon fontSize = "string"/>},
+    {"Table": <ViewColumnRoundedIcon fontSize = "string"/>},
+    {"Card": <ViewModuleIcon fontSize = "string"/>},
+    {"Labels": <LabelIcon fontSize = "string"/>},
+    {"Optional Fields": <InsertDriveFileIcon fontSize = "string"/>},
+    {"Automations": <SmartToyIcon fontSize = "string"/>},
+    {"Connections": <SettingsEthernetIcon fontSize = "string"/>},
+    {"Members": <PeopleAltIcon fontSize = "string"/>},
+    {"Export": <StartIcon fontSize = "string"/>},
+    {"General": <SettingsApplicationsIcon fontSize = "string"/>}
   ];

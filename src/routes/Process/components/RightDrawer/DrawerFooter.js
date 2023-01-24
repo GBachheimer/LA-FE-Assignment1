@@ -4,7 +4,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useTheme } from '@emotion/react';
 import { grey, teal } from '@mui/material/colors';
 
-const DrawerFooter = ({toggleDrawer}) => {
+const DrawerFooter = ({toggleRightDrawer}) => {
     const theme = useTheme();
     return (
         <Box 
@@ -14,7 +14,7 @@ const DrawerFooter = ({toggleDrawer}) => {
             alignItems = "end"
         >
             <IconButton 
-                onClick = {toggleDrawer} 
+                onClick = {toggleRightDrawer} 
                 sx = {{marginLeft: 2, marginBottom: 2}}
             >
                 <ArrowForwardIosIcon/>

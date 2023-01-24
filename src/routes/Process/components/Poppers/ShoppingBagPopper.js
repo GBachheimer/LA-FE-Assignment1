@@ -2,7 +2,7 @@ import * as React from 'react';
 import Popover from '@mui/material/Popover';
 import { Typography, Box, List, ListItem, ListItemText, ListItemButton } from '@mui/material';
 
-const ShoppingBagPopper = ({shoppingBagAnchor, closeShoppingBagPopper, toggleDrawer}) => {
+const ShoppingBagPopper = ({shoppingBagAnchor, closeShoppingBagPopper, toggleRightDrawer}) => {
 
   return (
       <Popover
@@ -29,7 +29,7 @@ const ShoppingBagPopper = ({shoppingBagAnchor, closeShoppingBagPopper, toggleDra
         }}
       >
         <List dense sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-          {[["Card"], ["Products"], ["Products & Card", toggleDrawer]].map(item => {
+          {[["Card"], ["Products"], ["Products & Card", toggleRightDrawer]].map(item => {
             return (
               <ListItem disablePadding key = {item} id = {item}>
                 <ListItemButton onClick = {item[1] ? item[1] : null}>

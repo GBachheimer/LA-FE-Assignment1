@@ -6,14 +6,14 @@ import "../../procesStyle.css"
 import { rightDrawerData } from '../../../../data/data';
 import DrawerFooter from './DrawerFooter';
 
-const RightDrawer = ({opened, toggleDrawer, children}) => {
+const RightDrawer = ({openRightDrawer, toggleRightDrawer, children}) => {
   const theme = useTheme();
 
   return (
     <Drawer
       anchor = "right"
-      open = {opened}
-      onClose = {toggleDrawer}
+      open = {openRightDrawer}
+      onClose = {toggleRightDrawer}
       PaperProps = {{sx: {width: 400}, className: "drawerScrollbar"}}
       hideBackdrop = {true}
       sx = {{zIndex: theme.zIndex.drawer - 101, position: "relative"}}
@@ -29,7 +29,7 @@ const RightDrawer = ({opened, toggleDrawer, children}) => {
           return <RightDrawerAccordion icon = {cathegory.icon} cathegory = {cathegory.name}/>
         })}
       </Box>
-      <DrawerFooter toggleDrawer = {toggleDrawer}/>
+      <DrawerFooter toggleRightDrawer = {toggleRightDrawer}/>
     </Drawer>
   )
 }

@@ -9,7 +9,7 @@ import { topBarOptions, topBarMenu } from '../../../../data/data';
 import LeftTopBar from './LeftTopBar';
 import RightTopBar from './RightTopBar';
 
-const TopBar = ({topBarItemAction, toggleDrawer}) => {
+const TopBar = ({topBarItemAction, toggleRightDrawer, toggleSettingsDrawer}) => {
     const [shoppingBagAnchor, setShoppingBagAnchor] = useState(null);
     const theme = useTheme();
 
@@ -46,11 +46,12 @@ const TopBar = ({topBarItemAction, toggleDrawer}) => {
                     <RightTopBar 
                         topBarMenu = {topBarMenu} 
                         toggleShoppingBagPopper = {toggleShoppingBagPopper}
+                        toggleSettingsDrawer = {toggleSettingsDrawer}
                     />
                     <Button 
                         startIcon = {<AddCircleOutlineIcon />} 
                         sx = {{marginLeft: 1, marginRight: 1}} color = "warning"
-                        onClick = {toggleDrawer}
+                        onClick = {toggleSettingsDrawer}
                     >
                         Add
                     </Button>
@@ -60,7 +61,7 @@ const TopBar = ({topBarItemAction, toggleDrawer}) => {
         <ShoppingBagPopper 
             shoppingBagAnchor = {shoppingBagAnchor}
             closeShoppingBagPopper = {closeShoppingBagPopper}
-            toggleDrawer = {toggleDrawer}
+            toggleRightDrawer = {toggleRightDrawer}
         />
     </Box>
   )
