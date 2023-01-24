@@ -5,7 +5,7 @@ import IntroCircle from '../resources/svg/shapes/IntroCircle'
 import IntroSemiCircle from '../resources/svg/shapes/IntroSemiCircle'
 import IntroTriangle from '../resources/svg/shapes/IntroTriangle'
 import DotPattern from '../resources/svg/DotPattern'
-import theme from './theme'
+import theme from '../styles/theme'
 
 const IntroPage = ({color}) => {
   return (

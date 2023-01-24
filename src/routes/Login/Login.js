@@ -2,7 +2,7 @@ import React from 'react'
 import LoginForm from './components/LoginForm'
 import IntroPage from '../../components/IntroPage'
 import { Grid } from '@mui/material'
-import theme from '../../components/theme'
+import theme from '../../styles/theme'
 
 const Login = () => {
   return (

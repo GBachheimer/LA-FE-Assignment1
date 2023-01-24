@@ -6,16 +6,14 @@ import Process from './routes/Process/Process';
 import Workspace from './routes/Workspace/Workspace';
 import ResetPassword from './routes/ResetPassword/ResetPassword';
 import PageNotFound from './routes/PageNotFound/PageNotFound';
-import theme from "./components/theme";
+import theme from "./styles/theme";
 import { ThemeProvider } from '@mui/material/styles';
 import { SnackbarProvider } from './contexts/SnackbarContext';
 import { AuthProvider } from './contexts/AuthContext';
 import EmailRedirect from './components/EmailRedirect';
-import { AuthContext } from './contexts/AuthContext';
-import { useContext } from 'react';
+import PrivateRoute from './utils/PrivateRoute';
 
 const App = () => {
-  const user = useContext(AuthContext);
 
   return (
     <AuthProvider>
@@ -27,8 +25,9 @@ const App = () => {
               <Route path = "/login" element = { <Login /> } />
               <Route path = "/resetPassword" element = { <ResetPassword step = "1"/> } />
               <Route path = "/handleEmail" element = { < EmailRedirect />} />
-              <Route path = "/workspace" element = { <Workspace /> } >
-                <Route path = "process" element = { <Process /> } />
+              <Route element = {<PrivateRoute/>}>
+                <Route path = "/workspace" element = { <Workspace /> } />
+                <Route path = "/workspace/:process" element = { <Process /> } />
               </Route>
               <Route path = "*" element = { <PageNotFound /> } />
             </Routes>

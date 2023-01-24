@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { styled, useTheme } from '@mui/material/styles';
 import { Box, Avatar, List, CssBaseline, IconButton } from '@mui/material';
 import MuiDrawer from '@mui/material/Drawer';
@@ -8,15 +8,12 @@ import { red } from '@mui/material/colors';
 import MenuAppBar from './components/MenuAppBar';
 import MenuIcon from '../../resources/svg/MenuIcon';
 import CoralyLogo from '../../resources/svg/CoralyLogo';
-import WorkspaceIcon from '../../resources/menuIcons/WorkspaceIcon';
-import FilesIcon from '../../resources/menuIcons/FilesIcon';
-import DatabaseIcon from '../../resources/menuIcons/DatabaseIcon';
-import ArrowsIcon from '../../resources/menuIcons/ArrowsIcon';
-import RobotIcon from '../../resources/menuIcons/RobotIcon';
-import TreeIcon from '../../resources/menuIcons/TreeIcon';
-import FAQIcon from '../../resources/menuIcons/FAQIcon';
-import SignoutIcon from '../../resources/menuIcons/SignoutIcon';
-import ConectionsIcon from '../../resources/menuIcons/ConectionsIcon';
+import { mainMenu } from '../../data/data';
+import { signOut } from 'firebase/auth';
+import { auth } from '../../config/firebase/firebase';
+import SignoutIcon from '../../resources/svg/menuIcons/SignoutIcon';
+import { useNavigate } from 'react-router-dom';
+import { SnackbarContext } from '../../contexts/SnackbarContext';
 
 export const drawerWidth = 240;
 
@@ -63,31 +60,36 @@ const DrawerHeader = styled('div')(({ theme }) => ({
   alignItems: 'center',
   justifyContent: 'flex-end',
   padding: theme.spacing(0, 1),
-  // necessary for content to be below app bar
   ...theme.mixins.toolbar,
 }));
 
 const MenuDrawer = ({children}) => {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
-  const menu = [
-    ['Workspace', <WorkspaceIcon />], 
-    ['Connections', <ConectionsIcon />], 
-    ['Files', <FilesIcon />], 
-    ['Database', <DatabaseIcon />], 
-    ['Arrows', <ArrowsIcon />], 
-    ['Robot', <RobotIcon />], 
-    ['Tree', <TreeIcon />], 
-    ['FAQ', <FAQIcon />], 
-    ['Sign out', <SignoutIcon />]
-  ];
+  const navigate = useNavigate();
+  const {handleMessage, handleSeverity, openSnackBar} = useContext(SnackbarContext)
 
   const handleDrawerToggle = () => {
     setOpen(!open);
   };
 
+  const handleSignout = () => {
+    signOut(auth)
+      .then(() => {
+        handleMessage("Sign out successfuly!");
+        handleSeverity("success");
+        openSnackBar();
+        navigate("/login");
+      })
+      .catch((error) => {
+        handleMessage("Sign out error!");
+        handleSeverity("error");
+        openSnackBar();
+      });
+  };
+
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: 'flex'}}>
       <CssBaseline />
       <MenuAppBar title = "test" open = {open} />
       <Drawer variant="permanent" open={open} sx = {{position: "relative"}}>
@@ -102,11 +104,16 @@ const MenuDrawer = ({children}) => {
               LD
             </Avatar>
           </MenuItem>
-          {menu.map((menuItem, index) => {
+          {mainMenu.map((menuItem, index) => {
             return <MenuItem key = {menuItem[0]} text = {menuItem[0]} open = {open} >
               {menuItem[1]}
             </MenuItem>
           })}
+          <MenuItem text = "Sign out" open = {open}>
+            <IconButton onClick = {handleSignout}>
+              <SignoutIcon />
+            </IconButton>
+          </MenuItem>
         </List>
         <MenuItem style = {{backgroundColor: theme.palette.primary.main}}>
           <CoralyLogo 

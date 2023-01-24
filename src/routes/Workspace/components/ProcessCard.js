@@ -6,7 +6,7 @@ import { grey } from '@mui/material/colors';
 
 const ProcessCard = ({backgroundColor, processName, handleButton, borderColor, borderStyle, textColor, icon, processPrivacy}) => {
   return (
-    <Button onClick = {() => handleButton(processPrivacy)} >
+    <Button onClick = {() => handleButton(processPrivacy, processName)} >
       <Card 
         sx={{ 
           width: 170, 

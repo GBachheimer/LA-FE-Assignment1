@@ -6,7 +6,7 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import { TextField, Select, MenuItem, Box, FormControl, InputLabel } from '@mui/material';
-import theme from '../../../components/theme';
+import theme from '../../../styles/theme';
 import { grey, teal } from '@mui/material/colors';
 
 const Transition = React.forwardRef(function Transition(props, ref) {

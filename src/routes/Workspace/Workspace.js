@@ -58,14 +58,14 @@ const Workspace = () => {
     closeCreateProcessDialog();
   };
 
-  const handleProcessButton = (processPrivacy) => {
+  const handleProcessButton = (processPrivacy, processName) => {
     if (processPrivacy === "private") {
       handleMessage("This is a private process.");
       handleSeverity("error");
       openSnackBar();
       return;
     };
-    navigate("/workspace/process");
+    navigate(`/workspace/${processName}`);
   };
 
   const addIcon = <AddIcon sx = {{ color: grey[600] }}/>;

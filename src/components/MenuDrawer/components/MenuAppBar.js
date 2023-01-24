@@ -5,8 +5,9 @@ import MuiAppBar from '@mui/material/AppBar';
 import { drawerWidth } from '../MenuDrawer';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
 import { teal } from '@mui/material/colors';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
+import { Link } from 'react-router-dom';
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -27,20 +28,25 @@ const AppBar = styled(MuiAppBar, {
 }));
 
 const MenuAppBar = ({title, open}) => {
-const params = useLocation();
+  let location = useLocation();
+  location = location.pathname.split("/");
+  let params = useParams();
+  if (params.process && !location.includes(params.process)) {
+    location.push(params.process);
+  };
 
   return (
-      <AppBar position="fixed" open={open} sx = {{backgroundColor: "white", color: "black"}}>
+      <AppBar position="fixed" open={open} sx = {{backgroundColor: "white", color: "black"}} elevation = {2}>
         <Toolbar>
           <Box display = "flex" justifyContent = "start" alignItems = "center" minWidth = "50%" sx = {{transform: !open ? "translateX(10%)" : "revert"}}>
-            {params.pathname.split("/").map((param, index) => {
+            {location.map((param, index) => {
               return (
-                <>
-                  <Typography variant="h6" noWrap key = {index} >
+                <Box key = {param} display = "flex" justifyContent = "center" alignItems = "center">
+                  <Typography variant="h6" noWrap >
                     {param}
                   </Typography>
                   {index > 0 ? <KeyboardArrowRightIcon /> : null}
-                </>
+                </Box>
               );
             })}
           </Box>
