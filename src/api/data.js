@@ -31,6 +31,17 @@ import SettingsEthernetIcon from '@mui/icons-material/SettingsEthernet';
 import PeopleAltIcon from '@mui/icons-material/PeopleAlt';
 import StartIcon from '@mui/icons-material/Start';
 import SettingsApplicationsIcon from '@mui/icons-material/SettingsApplications';
+import Eye from 'assets/svg/processDialogActions/Eye';
+import Folder from 'assets/svg/processDialogActions/Folder';
+import Target from 'assets/svg/processDialogActions/Target';
+import Link from 'assets/svg/processDialogActions/Link';
+import Windows from 'assets/svg/processDialogActions/Windows';
+import Delete from 'assets/svg/processDialogActions/Delete';
+import Bag from 'assets/svg/processDialogMenu/Bag';
+import Rows from 'assets/svg/processDialogMenu/Rows';
+import Comments from 'assets/svg/processDialogMenu/Comments';
+import Agrafa from 'assets/svg/processDialogMenu/Agrafa';
+import MenuSpecial from 'assets/svg/processDialogMenu/MenuSpecial';
 
 export const topBarOptions = [
     ["views", <WebAssetIcon/>], 
@@ -81,3 +92,20 @@ export const mainMenu = [
     {"Export": <StartIcon fontSize = "string" sx = {{marginRight: 1}}/>},
     {"General": <SettingsApplicationsIcon fontSize = "string" sx = {{marginRight: 1}}/>}
   ];
+
+  export const processDialogActions = [
+    <Folder/>,
+    <Target/>,
+    <Link/>,
+    <Windows/>,
+    <Delete/>
+  ];
+
+  export const processDialogSettingsOptions = [
+    <Bag/>,
+    <Rows/>,
+    <Comments/>,
+    <Agrafa/>,
+    <Link/>,
+    <MenuSpecial/>
+  ]

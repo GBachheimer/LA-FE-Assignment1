@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { Table, TableCell, TableRow, TableBody, Paper, TableContainer, Avatar } from '@mui/material'
 import { grey } from '@mui/material/colors'
-import ProcessTableDialog from './ProcessTableDialog'
+import ProcessTableDialog from '../ProcessDialog/ProcessDialog'
 import theme from 'styles/theme'
 
-const ProcessTable = ({users, ...restProps}) => {
-	const [openTableCard, setOpenTableCard] = useState(false);
+const ProcessTable = ({users, handleProcessDialogData, toggleTableCardDialog}) => {
 
 	const stringAvatar = (name) => {
 		return {
@@ -20,10 +19,6 @@ const ProcessTable = ({users, ...restProps}) => {
 		};
 	}
 
-	const toggleTableCardDialog = () => {
-		setOpenTableCard(!openTableCard);
-	};
-
 	return (
 		<>
 			<TableContainer component={Paper} sx = {{marginTop: 10}}>
@@ -33,7 +28,7 @@ const ProcessTable = ({users, ...restProps}) => {
 							return (
 								<TableRow
 									key = {index}
-									onClick = {toggleTableCardDialog}
+									onClick = {() => {toggleTableCardDialog(); handleProcessDialogData(user)}}
 								>	
 									{Object.entries(user).map(([key, value], index) => {
 										if (key === 'name' && typeof(value) !== 'object') {
@@ -55,10 +50,6 @@ const ProcessTable = ({users, ...restProps}) => {
 					</TableBody>
 				</Table>
 			</TableContainer>
-			<ProcessTableDialog
-				openTableCard = {openTableCard}
-				toggleTableCardDialog = {toggleTableCardDialog}
-			/>
 		</>
 	)
 }
