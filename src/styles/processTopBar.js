@@ -3,12 +3,12 @@ import { grey } from "@mui/material/colors";
 
 export const topBarContainer = { 
     zIndex: theme.zIndex.drawer + 1, 
-    position: 'relative'
+    position: 'fixed'
 };
 
 export const appBar = {
     margin: '-23px', 
-    minWidth: '103%', 
+    minWidth: '96vw', 
     bgcolor: grey[50], 
     color: grey[700]
 };

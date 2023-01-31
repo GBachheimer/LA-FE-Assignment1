@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { rightDrawerPaper, rightDrawerStyle } from 'styles/rightDrawer'
+import { rightDrawerPaper, rightDrawerStyle, rightDrawerContent } from 'styles/rightDrawer'
 import { Drawer, Box } from '@mui/material'
 import RightDrawerAccordion from './RightDrawerAccordion'
 import DrawerFooter from './DrawerFooter'
@@ -38,7 +38,7 @@ const RightDrawer = ({openRightDrawer, toggleRightDrawer, users}) => {
       sx = {rightDrawerStyle}
       className = 'drawerScrollbar'
     > 
-      <Box sx = {{marginTop: 17, textAlign: 'center', padding: '20px'}}>
+      <Box sx = {rightDrawerContent}>
         <RightDrawerAccordion user = {user} />
       </Box>
       <DrawerFooter 

@@ -35,3 +35,9 @@ export const rightDrawerStyle = {
     zIndex: theme.zIndex.drawer - 101, 
     position: 'relative'
 };
+
+export const rightDrawerContent = {
+    marginTop: 17, 
+    textAlign: 'center', 
+    padding: '20px'
+};

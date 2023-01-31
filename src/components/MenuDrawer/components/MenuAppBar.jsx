@@ -1,9 +1,10 @@
 import React from 'react'
-import { AppBar, appBar, toolbarBox1, toolbarBox2, mapBox, paper, avatar } from 'styles/menuAppBar'
+import { appBar, toolbarBox1, toolbarBox2, mapBox, paper, avatar } from 'styles/menuAppBar'
 import { Toolbar, Typography, Avatar, Paper, Box} from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
+import AppBar from 'components/styledComponents/AppBar'
 
 const MenuAppBar = ({title, open}) => {
     let location = useLocation();

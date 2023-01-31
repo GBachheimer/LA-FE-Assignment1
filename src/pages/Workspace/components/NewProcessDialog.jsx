@@ -6,12 +6,12 @@ import { Transition } from 'utils/transitionsDrawer'
 const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, handleCreateProcess, pickColor, handlePickColor, processPrivacy, handleProcessPrivacy}) => {
   return (
       <Dialog
-        open={open}
-        TransitionComponent={Transition}
+        open = {open}
+        TransitionComponent = {Transition}
         keepMounted
-        onClose={closeDialog}
-        aria-describedby='alert-dialog-slide-description'
-        PaperProps = {{style: {addProcessPaper}}}
+        onClose = {closeDialog}
+        aria-describedby = 'alert-dialog-slide-description'
+        PaperProps = {{style: addProcessPaper}}
       >
         <DialogTitle>{'Create a new process'}</DialogTitle>
         <DialogContent>
@@ -29,7 +29,7 @@ const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, ha
             <FormControl fullWidth>
               <InputLabel id = 'pickColor'>Pick color</InputLabel>
                 <Select
-                  label='Pick color'
+                  label = 'Pick color'
                   labelId = 'pickColor'
                   value = {pickColor}
                   onChange = {handlePickColor}
@@ -38,8 +38,8 @@ const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, ha
                 >
                   <MenuItem value= 'blue'>Blue</MenuItem>
                   <MenuItem value= 'red'>Red</MenuItem>
-                  <MenuItem value='green'>Green</MenuItem>
-                  <MenuItem value='purple'>Purple</MenuItem>
+                  <MenuItem value = 'green'>Green</MenuItem>
+                  <MenuItem value = 'purple'>Purple</MenuItem>
                 </Select>
               </FormControl>
             </Box>
@@ -47,7 +47,7 @@ const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, ha
             <FormControl fullWidth>
               <InputLabel id = 'processPrivacy'>Process privacy</InputLabel>
                 <Select
-                  label='Process privacy'
+                  label = 'Process privacy'
                   labelId = 'processPrivacy'
                   value = {processPrivacy}
                   onChange = {handleProcessPrivacy}
