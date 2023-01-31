@@ -2,12 +2,18 @@ import { resendVerificationEmail } from './resendVerificationEmail'
 import { createUserWithEmailAndPassword } from 'firebase/auth'
 import { auth } from 'config/firebase/firebase'
 
-export const handleSignup = (handleMessage, handleSeverity, openSnackBar, email, password, repeatPass, setDone) => {
+export const handleSignup = (handleMessage, handleSeverity, openSnackBar, email, password, repeatPass, setDone, termsAgrement) => {
     if (password !== repeatPass) {
-      handleMessage('Wrong confirmation password!');
-      handleSeverity('error');
-      openSnackBar();
-      return;
+        handleMessage('Wrong confirmation password!');
+        handleSeverity('error');
+        openSnackBar();
+        return;
+    };
+    if (!termsAgrement) {
+        handleMessage('Read terms!');
+        handleSeverity('error');
+        openSnackBar();
+        return;
     };
     createUserWithEmailAndPassword(auth, email, password)
     .then((userCredentials) => {

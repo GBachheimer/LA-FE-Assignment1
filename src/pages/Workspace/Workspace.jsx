@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import { workspaceGridMain, nameTypography, subtitle } from 'styles/workspace'
 import { SnackbarContext } from 'contexts/SnackbarContext'
 import { useNavigate, Outlet } from 'react-router-dom'
 import { Typography, Grid } from '@mui/material'
@@ -42,21 +43,21 @@ const Workspace = () => {
 
   const handleCreateProcess = () => {
     if (processName === '' || pickColor === '' || processPrivacy === '') {
-      handleMessage('Please fill the required fields!');
-      handleSeverity('error');
-      openSnackBar();
-      return;
+        handleMessage('Please fill the required fields!');
+        handleSeverity('error');
+        openSnackBar();
+        return;
     };
     if (allProceses.filter(process => process.name === processName).length > 0) {
-      handleMessage('This name already exists, please choose another.');
-      handleSeverity('error');
-      openSnackBar();
-      return;
+        handleMessage('This name already exists, please choose another.');
+        handleSeverity('error');
+        openSnackBar();
+        return;
     };
     const newProcess = { id: id, name: processName, pickedColor: pickColor, processPrivacy: processPrivacy };
     setAllProceses([ ...allProceses, newProcess ]);
     closeCreateProcessDialog();
-  };
+};
 
   const handleProcessButton = (processPrivacy, processName) => {
     if (processPrivacy === 'private') {
@@ -72,11 +73,11 @@ const Workspace = () => {
 
   return (
     <MenuDrawer>
-      <Grid container item xs = {12} mt = {2} direction = 'column'>
-        <Typography variant = 'h5' ml = {2}>
+      <Grid container item xs = {12} direction = 'column' sx = {workspaceGridMain}>
+        <Typography variant = 'h5' sx = {nameTypography}>
           Welcome, {name}
         </Typography>
-        <Grid item mt = {2} ml = {2}>
+        <Grid item sx = {subtitle}>
           <Typography variant = 'body2' maxWidth = '40%'>
             Work with your team mates, take track of your process 
             and close all tasks
@@ -111,7 +112,7 @@ const Workspace = () => {
         handleProcessName = {handleProcessName}
         pickColor = {pickColor}
         handlePickColor = {handlePickColor}
-        handleCreateProcess = {handleCreateProcess}
+        handleCreateProcess = {() => handleCreateProcess(handleMessage, handleSeverity, openSnackBar, setAllProceses, closeCreateProcessDialog)}
         processPrivacy = {processPrivacy}
         handleProcessPrivacy = {handleProcessPrivacy}
       />

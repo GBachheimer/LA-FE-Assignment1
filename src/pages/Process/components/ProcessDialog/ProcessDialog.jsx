@@ -4,6 +4,7 @@ import { Box, Dialog } from '@mui/material'
 import ProcessDialogContent from './components/ProcessDialogContent'
 import ProcessDialogTopBar from './components/ProcessDialogTopBar'
 import ProcessDialogFooter from './components/ProcessDialogFooter'
+import { dialogPaper } from 'styles/processDialog'
 
 const ProcessDialog = ({openTableCard, toggleTableCardDialog, processDialogData}) => {
   return (
@@ -13,7 +14,7 @@ const ProcessDialog = ({openTableCard, toggleTableCardDialog, processDialogData}
         fullWidth = {true}
         maxWidth = 'xl'
         onClose = {toggleTableCardDialog}
-        PaperProps = {{style: {borderRadius: 15, height: '90vh'}}}
+        PaperProps = {{style: dialogPaper}}
         scroll = 'paper'
       >
         <ProcessDialogTopBar toggleTableCardDialog = {toggleTableCardDialog}/>

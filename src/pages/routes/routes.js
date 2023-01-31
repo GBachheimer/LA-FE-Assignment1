@@ -2,7 +2,7 @@ import PageNotFound from 'pages/PageNotFound/PageNotFound'
 import ResetPassword from 'pages/ResetPassword/ResetPassword'
 import Workspace from 'pages/Workspace/Workspace'
 import EmailRedirect from './EmailRedirect'
-import Process from 'pages/Process/Process'
+import ProcessWithUsers from 'pages/Process/ProcessWithUsers'
 import Signup from 'pages/Signup/Signup'
 import Login from 'pages/Login/Login'
 
@@ -16,5 +16,5 @@ export const freeRoutes = [
 
 export const protectedRoutes = [
     { path: '/workspace', component: <Workspace /> },
-    { path: '/workspace/:process', component: <Process /> },
+    { path: '/workspace/:process', component: <ProcessWithUsers /> },
 ]

@@ -11,7 +11,7 @@ const SettingsDrawerContent = ({children, value, index, ...other}) => {
         {...other}
     >
         {value === index && (
-        <Box sx = {{ p: 3, width: '80vw' }}>
+        <Box sx = {{ p: 3, width: '78vw' }}>
             <Typography>{children}</Typography>
         </Box>
         )}

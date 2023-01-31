@@ -2,8 +2,14 @@ body {
     margin: 0px;
 }
 
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
 ::-webkit-scrollbar {
-    width: 0.2em;
+    width: 0;
+    background: transparent;
 }
    
 ::-webkit-scrollbar-thumb {

@@ -5,36 +5,15 @@ import IntroTriangle from 'assets/svg/shapes/IntroTriangle'
 import IntroCircle from 'assets/svg/shapes/IntroCircle'
 import IntroBar from 'assets/svg/shapes/IntroBar'
 import DotPattern from 'assets/svg/DotPattern'
-import theme from 'styles/theme'
+import { gridContainer, text, box } from 'styles/introPage'
 
 const IntroPage = ({color}) => {
   return (
-    <Grid 
-      container item 
-      xs = {7} 
-      sx = {{
-        textAlign: 'center', 
-        height: '100vh', 
-        position: 'relative', 
-        overflow: 'hidden', 
-        backgroundColor: color
-      }}
-    >
-        <Typography 
-            variant = 'h4' 
-            style = {{
-            position: 'absolute', 
-            marginTop: '39%', 
-            marginLeft: '25%',
-            marginRight: '15%',
-            zIndex: 2, 
-            textAlign: 'left', 
-            color: theme.palette.text.primary
-            }}
-        >
+    <Grid container item xs = {7} sx = {gridContainer(color)}>
+        <Typography variant = 'h4' style = {text}>
             Get started with Coraly now and improve your workflow
         </Typography>
-        <Box sx = {{position: 'absolute', width: '100%', height: '100%', zIndex: 1}}>
+        <Box sx = {box}>
             <IntroCircle />
             <IntroSemiCircle />
             <IntroTriangle />

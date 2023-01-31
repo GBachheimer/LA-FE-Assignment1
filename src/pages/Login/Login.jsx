@@ -8,9 +8,7 @@ const Login = () => {
   return (
     <Grid container columns = {12} spacing = {0}>
       <LoginForm />
-      <IntroPage 
-        color = {theme.palette.introBackground.primary}
-      />
+      <IntroPage color = {theme.palette.introBackground.primary} />
     </Grid>
   )
 }

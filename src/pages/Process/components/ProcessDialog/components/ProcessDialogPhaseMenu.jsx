@@ -1,11 +1,12 @@
 import React from 'react'
-import FormTextField from 'components/FormTemplate/components/FormTextField'
+import { phaseMenuContainer } from 'styles/processDialog'
 import { Box, Typography } from '@mui/material'
+import FormTextField from 'components/FormTemplate/components/FormTextField'
 import PhaseAccordion from './PhaseAccordion'
 
 const ProcessDialogPhaseMenu = () => {
     return (
-        <Box sx = {{width: '95%', margin: 'auto'}}>
+        <Box sx = {phaseMenuContainer}>
             <Typography variant = 'body2'>Field's Phase</Typography>
             <PhaseAccordion label = 'Phase 2'>
                 <FormTextField label = "Contract Number" />

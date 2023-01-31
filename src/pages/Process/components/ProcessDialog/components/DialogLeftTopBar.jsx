@@ -1,61 +1,54 @@
 import React from 'react'
+import { leftTopBarConatiner, leftTopBarLine1, line1Item1, avatarGroup, line1Item2, line1Button, line2Typo, leftTopBarLine2, middleChip, selectVendors } from 'styles/processDialog'
 import { Box, Avatar, AvatarGroup, Button, Typography, Chip, IconButton, Divider } from '@mui/material'
-import theme from 'styles/theme'
-import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
-import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
-import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
-import Person from 'assets/svg/processDialogMenu/Person';
-import Databse from 'assets/svg/processDialogMenu/Databse';
-import Arrow from 'assets/svg/Arrow';
+import { formattedDate } from 'utils/dateFormat';
 import { grey } from '@mui/material/colors';
+import AddCircleOutlineRoundedIcon from '@mui/icons-material/AddCircleOutlineRounded';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import ArrowDropDownRoundedIcon from '@mui/icons-material/ArrowDropDownRounded';
+import Databse from 'assets/svg/processDialogMenu/Databse';
+import Person from 'assets/svg/processDialogMenu/Person';
+import Arrow from 'assets/svg/Arrow';
 
 const DialogLeftTopBar = () => {
-    const date = new Date();
-    const formattedDate = date.toLocaleString("en-GB", {
-        day: "numeric",
-        month: "short",
-        year: "numeric",
-        hour: "numeric",
-        minute: "2-digit"
-    });
     return (
-        <Box sx = {{width: '93%', height: '20%', display: 'flex', flexDirection: 'column', margin: 'auto'}}>
-            <Box sx = {{display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
-                <Box sx = {{display: 'flex', alignItems: 'center'}}>
-                    <AvatarGroup max={5} sx={{'& .MuiAvatar-root': { width: 32, height: 32, fontSize: 18, backgroundColor: theme.palette.primary.main},}}>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
-                        <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg"/>
-                        <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg"/>
-                        <Avatar alt="Agnes Walker" src="/static/images/avatar/4.jpg"/>
-                        <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg"/>
-                        <Avatar alt="Trevor Henderson" src="/static/images/avatar/5.jpg"/>
+        <Box sx = {leftTopBarConatiner}>
+            <Box sx = {leftTopBarLine1}>
+                <Box sx = {line1Item1}>
+                    <AvatarGroup max = {5} sx = {avatarGroup}>
+                        <Avatar alt = 'Remy Sharp' src = '/static/images/avatar/1.jpg' />
+                        <Avatar alt = 'Travis Howard' src = '/static/images/avatar/2.jpg'/>
+                        <Avatar alt = 'Cindy Baker' src = '/static/images/avatar/3.jpg'/>
+                        <Avatar alt = 'Agnes Walker' src = '/static/images/avatar/4.jpg'/>
+                        <Avatar alt = 'Trevor Henderson' src = '/static/images/avatar/5.jpg'/>
+                        <Avatar alt = 'Trevor Henderson' src = '/static/images/avatar/5.jpg'/>
                     </AvatarGroup>
                     <IconButton size = 'small' color = 'warning'>
                         <AddCircleOutlineRoundedIcon />
                     </IconButton>
                 </Box>
-                <Box sx = {{diplay: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+                <Box sx = {line1Item2}>
                     <Arrow/>
                     <Arrow/>
-                    <Button endIcon = {<ArrowDropDownRoundedIcon/>} sx = {{color: grey[600], fontSize: 16}}>
+                    <Button endIcon = {<ArrowDropDownRoundedIcon/>} sx = {line1Button}>
                         Chapter one
                     </Button>
                 </Box>
-                <Box sx = {{display: 'flex', alignItems: 'center'}}>
+                <Box sx = {line1Item1}>
                     <CalendarTodayOutlinedIcon sx = {{color: grey[600]}} fontSize = 'small'/>
-                    <Typography variant = 'body2' sx = {{color: grey[600], marginLeft: '0.2rem'}}>{formattedDate}</Typography>
+                    <Typography variant = 'body2' sx = {line2Typo}>{formattedDate}</Typography>
                 </Box>
             </Box>
-            <Box sx = {{display: 'flex', alignItems: 'center', justifyContent: 'left'}}>
+            <Box sx = {leftTopBarLine2}>
                 <Chip label = 'Label 1' color = 'primary' size = 'small'/>
-                <Chip label = 'Label 2' color = 'warning' sx = {{marginLeft: 1, marginRight: 1}} size = 'small'/>
+                <Chip label = 'Label 2' color = 'warning' sx = {middleChip} size = 'small'/>
                 <Chip label = 'Label 3' color = 'secondary' size = 'small'/>
                 <IconButton size = 'small' color = 'warning'>
                     <AddCircleOutlineRoundedIcon />
                 </IconButton>
             </Box>
-            <Box sx = {{display: 'flex', alignItems: 'center', justifyContent: 'left'}}>
-                <Button startIcon = {<Person/>} endIcon = {<ArrowDropDownRoundedIcon/>} sx = {{fontSize: 14, color: grey[600]}}>
+            <Box sx = {leftTopBarLine2}>
+                <Button startIcon = {<Person/>} endIcon = {<ArrowDropDownRoundedIcon/>} sx = {selectVendors}>
                     Select Vendors
                 </Button>
                 <Divider orientation = 'vertical' />

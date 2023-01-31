@@ -4,7 +4,6 @@ import { Transition } from 'utils/transitionsDrawer'
 import SettingsDrawerContent from './SettingsDrawerContent'
 import SettingsDrawerHeader from './SettingsDrawerHeader'
 import VerticalTabSettings from './VerticalTabSettings'
-import 'pages/Process/procesStyle.css'
 
 const SettingsDrawer = ({openSettings, toggleSettingsDrawer, users}) => {
   return (

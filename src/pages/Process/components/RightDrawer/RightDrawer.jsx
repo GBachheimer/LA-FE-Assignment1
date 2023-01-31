@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react'
+import { rightDrawerPaper, rightDrawerStyle } from 'styles/rightDrawer'
 import { Drawer, Box } from '@mui/material'
-import { useTheme } from '@emotion/react'
 import RightDrawerAccordion from './RightDrawerAccordion'
 import DrawerFooter from './DrawerFooter'
 
 const RightDrawer = ({openRightDrawer, toggleRightDrawer, users}) => {
-  const theme = useTheme();
   const [user, setUser] = useState(users ? users[0]: null);
   const [position, setPosition] = useState(0);
 
@@ -34,17 +33,19 @@ const RightDrawer = ({openRightDrawer, toggleRightDrawer, users}) => {
       anchor = 'right'
       open = {openRightDrawer}
       onClose = {toggleRightDrawer}
-      PaperProps = {{sx: {width: 400}, className: 'drawerScrollbar'}}
+      PaperProps = {rightDrawerPaper}
       hideBackdrop = {true}
-      sx = {{zIndex: theme.zIndex.drawer - 101, position: 'relative'}}
+      sx = {rightDrawerStyle}
       className = 'drawerScrollbar'
     > 
-      <Box 
-        sx = {{marginTop: 17, textAlign: 'center'}} 
-      >
+      <Box sx = {{marginTop: 17, textAlign: 'center', padding: '20px'}}>
         <RightDrawerAccordion user = {user} />
       </Box>
-      <DrawerFooter toggleRightDrawer = {toggleRightDrawer} nextUser = {nextUser} prevUser = {prevUser}/>
+      <DrawerFooter 
+        toggleRightDrawer = {toggleRightDrawer} 
+        nextUser = {nextUser} 
+        prevUser = {prevUser}
+      />
     </Drawer>
   )
 }

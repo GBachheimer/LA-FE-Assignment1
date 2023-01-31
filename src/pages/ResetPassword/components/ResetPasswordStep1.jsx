@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { SnackbarContext } from 'contexts/SnackbarContext'
-import { handleResetPass } from 'api/handleResetPassword'
+import { handleResetPass } from 'api/auth/handleResetPassword'
 import FormTextField from 'components/FormTemplate/components/FormTextField'
 import FormTemplate from 'components/FormTemplate/FormTemplate'
 import EmailSentSVG from 'assets/svg/EmailSent'

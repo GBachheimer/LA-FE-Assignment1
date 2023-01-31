@@ -9,7 +9,6 @@ const SignupFormStep2 = ({name, handleName, surname, handleSurname, workspace, h
   const {handleMessage, handleSeverity, openSnackBar} = useContext(SnackbarContext);
 
   const handleAdditionalInfo = () => {
-    //save info to firebase database/firestore then
     if (name !== '' && surname !== '' && workspace !== '') {
       navigate(`/workspace`);
     } else {

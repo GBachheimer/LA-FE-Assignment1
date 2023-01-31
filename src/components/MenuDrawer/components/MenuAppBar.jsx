@@ -1,30 +1,9 @@
 import React from 'react'
+import { AppBar, appBar, toolbarBox1, toolbarBox2, mapBox, paper, avatar } from 'styles/menuAppBar'
 import { Toolbar, Typography, Avatar, Paper, Box} from '@mui/material'
 import { useLocation, useParams } from 'react-router-dom'
-import { styled } from '@mui/material/styles'
-import { teal } from '@mui/material/colors'
-import { drawerWidth } from '../MenuDrawer'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight'
-import MuiAppBar from '@mui/material/AppBar'
-
-const AppBar = styled(MuiAppBar, {
-  shouldForwardProp: (prop) => prop !== 'open',
-})(({ theme, open }) => ({
-  zIndex: theme.zIndex.drawer - 1,
-  transition: theme.transitions.create(['width', 'margin'], {
-    easing: theme.transitions.easing.sharp,
-    duration: theme.transitions.duration.leavingScreen,
-  }),
-  ...(open && {
-    marginLeft: drawerWidth,
-    width: `calc(100% - ${drawerWidth}px)`,
-    transition: theme.transitions.create(['width', 'margin'], {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  }),
-}));
 
 const MenuAppBar = ({title, open}) => {
     let location = useLocation();
@@ -35,50 +14,25 @@ const MenuAppBar = ({title, open}) => {
     };
 
     return (
-        <AppBar 
-            position = 'fixed' open = {open} 
-            sx = {{backgroundColor: 'white', color: 'black'}} 
-            elevation = {2}
-        >
+        <AppBar open = {open} sx = {appBar} elevation = {2}>
             <Toolbar>
-                <Box 
-                    display = 'flex' 
-                    justifyContent = 'start' 
-                    alignItems = 'center' 
-                    minWidth = '50%' 
-                    sx = {{transform: !open ? 'translateX(10%)' : 'revert'}}
-                >
+                <Box sx = {toolbarBox1(open)}>
                     {location.map((param, index) => {
-                    return (
-                        <Box 
-                            key = {param} 
-                            display = 'flex' 
-                            justifyContent = 'center' 
-                            alignItems = 'center'
-                        >
-                            <Typography variant='h6' noWrap >
-                                {param}
-                            </Typography>
-                            {index > 0 ? <KeyboardArrowRightIcon /> : null}
-                        </Box>
-                    );
+                        return (
+                            <Box key = {param} sx = {mapBox}>
+                                <Typography variant='h6' noWrap >
+                                    {param}
+                                </Typography>
+                                {index > 0 ? <KeyboardArrowRightIcon /> : null}
+                            </Box>
+                        );
                     })}
                 </Box>
-                <Box 
-                    display = 'flex' 
-                    justifyContent = 'end' 
-                    alignItems = 'center' 
-                    width = '100%'
-                >
+                <Box sx = {toolbarBox2}>
                     <NotificationsOutlinedIcon />
-                    <Paper 
-                        elevation={1} 
-                        sx = {{width: '30px', textAlign: 'center', marginLeft: '1rem', marginRight: '1rem'}}
-                    >
-                        A
-                    </Paper>
-                    <Avatar sx={{ bgcolor: teal[200], borderRadius: '5px', height: 30, width: 30, fontSize: '0.6rem' }} variant = 'square'>
-                    LD
+                    <Paper elevation = {1} sx = {paper}>A</Paper>
+                    <Avatar sx = {avatar} variant = 'square'>
+                        LD
                     </Avatar>
                 </Box>
             </Toolbar>

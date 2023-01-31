@@ -8,20 +8,18 @@ const EnhancedTableHead = (props) => {
     return (
         <TableHead sx = {{backgroundColor: '#F6F8FA'}}>
             <TableRow>
-            <TableCell padding="checkbox">
+            <TableCell padding = 'checkbox'>
                 <Checkbox
-                    color="warning"
-                    indeterminate={numSelected > 0 && numSelected < rowCount}
-                    checked={rowCount > 0 && numSelected === rowCount}
-                    onChange={onSelectAllClick}
-                    inputProps={{
-                        'aria-label': 'select all desserts',
-                    }}
+                    color = 'warning'
+                    indeterminate = {numSelected > 0 && numSelected < rowCount}
+                    checked = {rowCount > 0 && numSelected === rowCount}
+                    onChange = {onSelectAllClick}
+                    inputProps = {{'aria-label': 'select all desserts',}}
                 />
             </TableCell>
-                <TableCell align='left'>Name</TableCell>
-                <TableCell align='left'>Email</TableCell>
-                <TableCell align='left'>
+                <TableCell align = 'left'>Name</TableCell>
+                <TableCell align = 'left'>Email</TableCell>
+                <TableCell align = 'left'>
                     <Box display = 'flex' alignItems = 'center'>
                         <Typography>Permissions</Typography>
                         <IconButton sx = {{marginLeft: 1}}>
@@ -29,7 +27,7 @@ const EnhancedTableHead = (props) => {
                         </IconButton>
                     </Box>
                 </TableCell>
-                <TableCell align='left'></TableCell>
+                <TableCell align = 'left'></TableCell>
             </TableRow>
         </TableHead>
     );

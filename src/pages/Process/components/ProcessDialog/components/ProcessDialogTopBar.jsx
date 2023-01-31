@@ -1,10 +1,11 @@
 import React from 'react'
 import { Box, Typography } from '@mui/material'
 import ProcessDialogActions from './ProcessDialogActions'
+import { dialogTopBar } from 'styles/processDialog'
 
 const ProcessDialogTopBar = ({toggleTableCardDialog}) => {
     return (
-        <Box style = {{width: '97%', display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginLeft: '2%', marginTop: '1%', marginBottom: '1%'}}>
+        <Box style = {dialogTopBar}>
             <Typography variant = 'h5'>
                 Email
             </Typography>

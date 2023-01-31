@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { dialogContent } from 'styles/processDialog'
 import { Box, Divider } from '@mui/material'
 import ProcessDialogLeft from './ProcessDialogLeft'
 import ProcessDialogRight from './ProcessDialogRight'
@@ -12,7 +13,7 @@ const ProcessDialogContent = ({processDialogData}) => {
     };
 
     return (
-        <Box sx = {{width: '100%', height: '80%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+        <Box sx = {dialogContent}>
             <ProcessDialogLeft processDialogData = {processDialogData}/>
             <Divider orientation = 'vertical' />
             <ProcessDialogRight menuValue = {menuValue}/>

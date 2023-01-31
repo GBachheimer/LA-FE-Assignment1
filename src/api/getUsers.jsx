@@ -20,7 +20,7 @@ const getUsers = (Component) => {
 
         if (!users) {
             return (
-                <Box sx = {{width: '100%', height: '100%', textAlign: 'center'}}>
+                <Box sx = {{width: '100%', height: '80vh', display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
                     <CircularProgress />
                 </Box>
             );

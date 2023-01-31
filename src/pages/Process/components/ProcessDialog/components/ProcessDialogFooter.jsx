@@ -1,17 +1,19 @@
 import React from 'react'
+import { dialogFooterTypo, dialogfooterButtons, buttonRadius } from 'styles/processDialog'
 import { Box, Typography, Button } from '@mui/material'
+import { dialogFoorter } from 'styles/processDialog'
 
 const ProcessDialogFooter = () => {
     return (
-        <Box sx = {{height: '10%', display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-            <Typography variant = 'body2' sx = {{marginLeft: '20px'}}>
+        <Box sx = {dialogFoorter}>
+            <Typography variant = 'body2' sx = {dialogFooterTypo}>
                 Fase ID: 123123i214y12312ui3
             </Typography>
-            <Box sx = {{display: 'flex', justifyContent: 'space-between', width: '200px', marginRight: '20px'}}>
-                <Button variant = 'outlined' sx = {{borderRadius: '10px'}}>
+            <Box sx = {dialogfooterButtons}>
+                <Button variant = 'outlined' sx = {buttonRadius}>
                     Cancel
                 </Button>
-                <Button color = 'secondary' variant = 'contained' sx = {{borderRadius: '10px'}}>
+                <Button color = 'secondary' variant = 'contained' sx = {buttonRadius}>
                     Save
                 </Button>
             </Box>

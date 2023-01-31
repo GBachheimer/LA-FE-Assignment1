@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react'
 import { SnackbarContext } from 'contexts/SnackbarContext'
-import { handleSignup } from 'api/handleSignup'        
+import { handleSignup } from 'api/auth/handleSignup'        
 import { Grid } from '@mui/material'
 import SignupFormStep1 from './components/SignupFormStep1'
 import SignupFormStep2 from './components/SignupFormStep2'
@@ -36,7 +36,7 @@ const Signup = ({step, actionCode}) => {
           handleTermsAgrement = {() => setTermsAgrement(!termsAgrement)}
           adsAgrement = {adsAgrement}
           handleAdsAgrement = {() => setAdsAgrement(!adsAgrement)}
-          handleSignup = {() => handleSignup(handleMessage, handleSeverity, openSnackBar, email, password, repeatPass, setDone)}
+          handleSignup = {() => handleSignup(handleMessage, handleSeverity, openSnackBar, email, password, repeatPass, setDone, termsAgrement)}
           done = {done}
         /> 
         : 

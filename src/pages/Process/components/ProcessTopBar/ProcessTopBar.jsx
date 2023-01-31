@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
+import { topBarContainer, appBar, rightToolbar, addButton } from 'styles/processTopBar'
 import { Box, AppBar, Toolbar, Button } from '@mui/material'
-import { topBarOptions, topBarMenu } from 'api/data'
-import { grey } from '@mui/material/colors'
-import { useTheme } from '@mui/material'
+import { topBarOptions, topBarMenu } from 'data/data'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import ShoppingBagPopper from '../Poppers/ShoppingBagPopper'
 import RightTopBar from './RightTopBar'
@@ -10,7 +9,6 @@ import LeftTopBar from './LeftTopBar'
 
 const TopBar = ({topBarItemAction, toggleRightDrawer, toggleSettingsDrawer, openRightDrawer}) => {
     const [shoppingBagAnchor, setShoppingBagAnchor] = useState(null);
-    const theme = useTheme();
 
     const toggleShoppingBagPopper = (event) => {
         if (!shoppingBagAnchor) {
@@ -25,23 +23,11 @@ const TopBar = ({topBarItemAction, toggleRightDrawer, toggleSettingsDrawer, open
     };
 
   return (
-    <Box sx = {{ zIndex: theme.zIndex.drawer + 1, position: 'relative'}}>
-        <AppBar 
-            position = 'static' 
-            sx = {{margin: '-23px', minWidth: '103%', bgcolor: grey[50], color: grey[700]}} 
-            elevation = {1}
-        >
+    <Box sx = {topBarContainer}>
+        <AppBar position = 'static' sx = {appBar} elevation = {1}>
             <Toolbar>
-                <LeftTopBar 
-                    topBarOptions = {topBarOptions} 
-                    topBarItemAction = {topBarItemAction}
-                />
-                <Box 
-                    display = 'flex' 
-                    justifyContent = 'end' 
-                    alignItems = 'center' 
-                    sx = {{width: '100%'}}
-                >
+                <LeftTopBar topBarOptions = {topBarOptions} topBarItemAction = {topBarItemAction}/>
+                <Box sx = {rightToolbar}>
                     <RightTopBar 
                         topBarMenu = {topBarMenu} 
                         toggleShoppingBagPopper = {toggleShoppingBagPopper}
@@ -50,7 +36,8 @@ const TopBar = ({topBarItemAction, toggleRightDrawer, toggleSettingsDrawer, open
                     />
                     <Button 
                         startIcon = {<AddCircleOutlineIcon />} 
-                        sx = {{marginLeft: 1, marginRight: 1}} color = 'warning'
+                        sx = {addButton} 
+                        color = 'warning'
                         onClick = {toggleSettingsDrawer}
                     >
                         Add

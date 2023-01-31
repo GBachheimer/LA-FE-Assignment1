@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { SnackbarContext } from 'contexts/SnackbarContext'
 import { useNavigate } from 'react-router-dom'
-import { handleLogin } from 'api/handleLogin'
+import { handleLogin } from 'api/auth/handleLogin'
 import { Grid } from '@mui/material'
 import FormTextField from 'components/FormTemplate/components/FormTextField'
 import FormChecks from 'components/FormTemplate/components/FormChecks'

@@ -1,8 +1,7 @@
 import React from 'react'
 import { TextField, Select, MenuItem, Box, FormControl, InputLabel, Button, Dialog, DialogTitle, DialogContent, DialogActions } from '@mui/material'
+import { addProcessPaper, dialogContent, dialogAction, dialogAction2 } from 'styles/workspace'
 import { Transition } from 'utils/transitionsDrawer'
-import { grey, teal } from '@mui/material/colors'
-import theme from 'styles/theme'
 
 const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, handleCreateProcess, pickColor, handlePickColor, processPrivacy, handleProcessPrivacy}) => {
   return (
@@ -12,19 +11,12 @@ const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, ha
         keepMounted
         onClose={closeDialog}
         aria-describedby='alert-dialog-slide-description'
-        PaperProps = {{style: {borderRadius: 15, width: '50%'}}}
+        PaperProps = {{style: {addProcessPaper}}}
       >
         <DialogTitle>{'Create a new process'}</DialogTitle>
         <DialogContent>
           <TextField
-            sx = {{
-              marginTop: '2vh',
-              '& .MuiOutlinedInput-root': {
-                '& fieldset': {
-                    borderRadius: 3,
-                    },
-              }
-            }}
+            sx = {dialogContent}
             required
             autoComplete = 'true'
             label = 'Process name'
@@ -69,31 +61,10 @@ const NewProcessDialog = ({open, closeDialog, processName, handleProcessName, ha
             </Box>
         </DialogContent>
         <DialogActions>
-          <Button 
-            variant = 'outlined' 
-            onClick = {closeDialog} 
-            sx = {{
-              borderRadius: 2, 
-              marginRight: '2vh', 
-              marginBottom: '2vh'
-            }}
-          >
+          <Button variant = 'outlined' onClick = {closeDialog} sx = {dialogAction}>
             Cancel
           </Button>
-          <Button 
-            onClick = {handleCreateProcess} 
-            sx = {{
-              backgroundColor: theme.palette.text.link, 
-              color: grey[50], 
-              borderRadius: 2, 
-              marginRight: '2vh', 
-              marginBottom: '2vh',   
-              '&:hover': {
-                backgroundColor: teal[400],
-                boxShadow: 'none',
-              },
-            }}
-          >
+          <Button onClick = {handleCreateProcess} sx = {dialogAction2}>
             Create
           </Button>
         </DialogActions>

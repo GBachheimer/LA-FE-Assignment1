@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { SnackbarContext } from 'contexts/SnackbarContext'
-import { handleUpdatePass } from 'api/handleUpdatePass'
+import { handleUpdatePass } from 'api/auth/handleUpdatePass'
 import { useNavigate } from 'react-router-dom'
 import FormTextField from 'components/FormTemplate/components/FormTextField'
 import FormTemplate from 'components/FormTemplate/FormTemplate'

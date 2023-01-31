@@ -1,31 +1,23 @@
 import React from 'react'
+import { leftTopBar, leftButton, divider } from 'styles/processTopBar'
 import { Box, Button, Divider } from '@mui/material'
-import { grey } from '@mui/material/colors'
 
 const LeftTopBar = ({topBarOptions, topBarItemAction}) => {
   return(
     <>
       {topBarOptions.map((optionItem) => {
         return (
-            <Box 
-              key = {optionItem[0]} 
-              display = 'flex' 
-              justifyContent = 'center' 
-              alignItems = 'center'
-            >
+            <Box key = {optionItem[0]} sx = {leftTopBar}>
                 <Button 
                     onClick = {topBarItemAction} 
                     startIcon = {optionItem[1]} 
-                    sx = {{fontSize: 12, minWidth: '7%', color: grey[700]}} 
+                    sx = {leftButton} 
                     size = 'small'
                     endIcon = {optionItem[2] ? optionItem[2] : null}
                 >
                     {optionItem[0]}
                 </Button>
-                <Divider 
-                    orientation = 'vertical' 
-                    sx ={{height: '50px', marginLeft: 1, marginRight: 1}}
-                />
+                <Divider orientation = 'vertical' sx = {divider}/>
             </Box>
         );
       })}
